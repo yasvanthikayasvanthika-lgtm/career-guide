@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IT Department Career Guide</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0b0f19;
+    color:white;
+    min-height:100vh;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:25px 18px;
+}
+
+header{
+    text-align:center;
+    padding:30px 10px;
+}
+
+.scanner{
+    font-size:60px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.15)}
+}
+
+h1{
+    font-size:32px;
+    margin:12px 0;
+}
+
+.subtitle{
+    color:#b9c1d0;
+    font-size:16px;
+}
+
+/* AI SECTION */
+
+.ai-box{
+    background:linear-gradient(135deg,#171d2e,#101827);
+    border:1px solid #39445d;
+    border-radius:20px;
+    padding:25px;
+    margin:20px 0 35px;
+    box-shadow:0 0 25px rgba(80,120,255,.12);
+}
+
+.ai-title{
+    font-size:24px;
+    margin-bottom:8px;
+}
+
+.ai-subtitle{
+    color:#aeb7c8;
+    margin-bottom:18px;
+}
+
+textarea{
+    width:100%;
+    min-height:100px;
+    resize:none;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    padding:15px;
+    font-size:16px;
+    background:#080c14;
+    color:white;
+}
+
+.ai-btn{
+    width:100%;
+    margin-top:12px;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#6c63ff;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.ai-btn:hover{
+    opacity:.85;
+}
+
+.ai-result{
+    display:none;
+    margin-top:18px;
+    padding:18px;
+    border-radius:14px;
+    background:#080c14;
+    line-height:1.7;
+}
+
+.ai-result h3{
+    margin-bottom:8px;
+}
+
+/* DEPARTMENTS */
+
+.section-title{
+    text-align:center;
+    margin-bottom:20px;
+    font-size:24px;
+}
+
+.departments{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.dept{
+    background:#151b29;
+    border:1px solid #30394d;
+    border-radius:18px;
+    padding:25px 15px;
+    text-align:center;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.dept:hover{
+    transform:translateY(-5px);
+    border-color:#6c63ff;
+    box-shadow:0 10px 25px rgba(108,99,255,.15);
+}
+
+.dept-icon{
+    font-size:45px;
+    margin-bottom:12px;
+}
+
+.dept h3{
+    font-size:17px;
+}
+
+/* ROADMAP */
+
+#roadmap{
+    display:none;
+}
+
+.back-btn{
+    background:#252d40;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    margin-bottom:25px;
+}
+
+.roadmap-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.roadmap-icon{
+    font-size:60px;
+}
+
+.roadmap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+}
+
+.step{
+    width:min(500px,100%);
+    background:#151b29;
+    border:1px solid #30394d;
+    border-radius:15px;
+    padding:18px;
+    text-align:center;
+}
+
+.step-icon{
+    font-size:35px;
+}
+
+.arrow{
+    font-size:25px;
+}
+
+.jobs{
+    margin-top:30px;
+    background:#151b29;
+    padding:22px;
+    border-radius:18px;
+}
+
+.jobs h2{
+    margin-bottom:15px;
+}
+
+.job-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.job{
+    background:#252d40;
+    padding:10px 14px;
+    border-radius:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    h1{
+        font-size:26px;
+    }
+
+    .departments{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .dept{
+        padding:20px 10px;
+    }
+}
+
+@media(max-width:450px){
+
+    .departments{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HOME -->
+
+<section id="home">
+
+<header>
+
+<div class="scanner">🔍</div>
+
+<h1>IT Department Career Guide</h1>
+
+<p class="subtitle">
+Choose a department and discover your career path
+</p>
+
+</header>
+
+
+<!-- AI CAREER ASSISTANT -->
+
+<div class="ai-box">
+
+<div class="ai-title">
+🤖 AI Career Assistant
+</div>
+
+<p class="ai-subtitle">
+Tell me about your interests, skills or dream career.
+</p>
+
+<textarea
+id="userInput"
+placeholder="Example: I like coding and building websites..."
+></textarea>
+
+<button class="ai-btn" onclick="askAI()">
+✨ Find My Career
+</button>
+
+<div id="aiResult" class="ai-result"></div>
+
+</div>
+
+
+<!-- DEPARTMENTS -->
+
+<h2 class="section-title">
+🎓 Explore Departments
+</h2>
+
+<div class="departments">
+
+<div class="dept" onclick="showRoadmap('IT')">
+<div class="dept-icon">💻</div>
+<h3>Information Technology</h3>
+</div>
+
+<div class="dept" onclick="showRoadmap('CSE')">
+<div class="dept-icon">🖥️</div>
+<h3>Computer Science Engineering</h3>
+</div>
+
+<div class="dept" onclick="showRoadmap('ECE')">
+<div class="dept-icon">📡</div>
+<h3>Electronics & Communication</h3>
+</div>
+
+<div class="dept" onclick="showRoadmap('CYBER')">
+<div class="dept-icon">🔐</div>
+<h3>Cyber Security</h3>
+</div>
+
+<div class="dept" onclick="showRoadmap('ROBOTICS')">
+<div class="dept-icon">🤖</div>
+<h3>Robotics</h3>
+</div>
+
+<div class="dept" onclick="showRoadmap('AIDS')">
+<div class="dept-icon">🧠</div>
+<h3>AI & Data Science</h3>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ROADMAP -->
+
+<section id="roadmap">
+
+<button class="back-btn" onclick="goHome()">
+← Back
+</button>
+
+<div class="roadmap-header">
+
+<div id="roadmapIcon" class="roadmap-icon"></div>
+
+<h1 id="roadmapTitle"></h1>
+
+<p class="subtitle">
+Your possible learning journey
+</p>
+
+</div>
+
+<div id="roadmapSteps" class="roadmap"></div>
+
+<div class="jobs">
+
+<h2>💼 Career Opportunities</h2>
+
+<div id="jobList" class="job-list"></div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* =========================
+   CAREER DATA
+========================= */
+
+const careers = {
+
+IT:{
+icon:"💻",
+title:"INFORMATION TECHNOLOGY",
+
+steps:[
+["🎓","Degree"],
+["💻","Programming"],
+["🌐","Web / Software"],
+["☁️","Cloud"],
+["🤖","AI / Modern Tech"],
+["💼","IT Career"]
+],
+
+jobs:[
+"Software Developer",
+"Web Developer",
+"Cloud Engineer",
+"AI Engineer",
+"System Engineer"
+]
+},
+
+CSE:{
+icon:"🖥️",
+title:"COMPUTER SCIENCE ENGINEERING",
+
+steps:[
+["🎓","Degree"],
+["⌨️","Programming"],
+["🧩","DSA"],
+["💻","Software Development"],
+["☁️","Advanced Tech"],
+["💼","CSE Career"]
+],
+
+jobs:[
+"Software Engineer",
+"Full Stack Developer",
+"Data Engineer",
+"System Engineer",
+"Application Developer"
+]
+},
+
+ECE:{
+icon:"📡",
+title:"ELECTRONICS & COMMUNICATION",
+
+steps:[
+["🎓","Degree"],
+["🔌","Electronics"],
+["📡","Communication"],
+["📱","Embedded Systems"],
+["🌐","IoT"],
+["💼","ECE Career"]
+],
+
+jobs:[
+"Embedded Engineer",
+"IoT Engineer",
+"VLSI Engineer",
+"Communication Engineer",
+"Electronics Engineer"
+]
+},
+
+CYBER:{
+icon:"🔐",
+title:"CYBER SECURITY",
+
+steps:[
+["🎓","Degree"],
+["🌐","Networking"],
+["🔐","Security Basics"],
+["🕵️","Ethical Hacking"],
+["🛡️","Cyber Defence"],
+["💼","Cyber Career"]
+],
+
+jobs:[
+"Cyber Security Analyst",
+"Ethical Hacker",
+"Security Engineer",
+"SOC Analyst",
+"Security Consultant"
+]
+},
+
+ROBOTICS:{
+icon:"🤖",
+title:"ROBOTICS",
+
+steps:[
+["🎓","Degree"],
+["⚙️","Mechanics"],
+["🔌","Electronics"],
+["💻","Programming"],
+["🤖","Robotics & Automation"],
+["💼","Robotics Career"]
+],
+
+jobs:[
+"Robotics Engineer",
+"Automation Engineer",
+"Robot Programmer",
+"Control Engineer",
+"Automation Developer"
+]
+},
+
+AIDS:{
+icon:"🧠",
+title:"AI & DATA SCIENCE",
+
+steps:[
+["🎓","Degree"],
+["📊","Data"],
+["🐍","Python"],
+["📈","Machine Learning"],
+["🤖","Artificial Intelligence"],
+["💼","AI Career"]
+],
+
+jobs:[
+"Data Scientist",
+"AI Engineer",
+"ML Engineer",
+"Data Analyst",
+"AI Developer"
+]
+
+}
+
+};
+
+
+/* =========================
+   SHOW ROADMAP
+========================= */
+
+function showRoadmap(type){
+
+const data=careers[type];
+
+document.getElementById("home").style.display="none";
+
+document.getElementById("roadmap").style.display="block";
+
+document.getElementById("roadmapIcon").innerText=data.icon;
+
+document.getElementById("roadmapTitle").innerText=data.title;
+
+const roadmap=document.getElementById("roadmapSteps");
+
+roadmap.innerHTML="";
+
+data.steps.forEach((step,index)=>{
+
+let div=document.createElement("div");
+
+div.className="step";
+
+div.innerHTML=`
+
+<div class="step-icon">
+${step[0]}
+</div>
+
+<strong>${step[1]}</strong>
+
+`;
+
+roadmap.appendChild(div);
+
+if(index<data.steps.length-1){
+
+let arrow=document.createElement("div");
+
+arrow.className="arrow";
+
+arrow.innerText="↓";
+
+roadmap.appendChild(arrow);
+
+}
+
+});
+
+
+const jobList=document.getElementById("jobList");
+
+jobList.innerHTML="";
+
+data.jobs.forEach(job=>{
+
+let span=document.createElement("span");
+
+span.className="job";
+
+span.innerText=job;
+
+jobList.appendChild(span);
+
+});
+
+window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+   BACK HOME
+========================= */
+
+function goHome(){
+
+document.getElementById("roadmap").style.display="none";
+
+document.getElementById("home").style.display="block";
+
+window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+   AI CAREER ASSISTANT
+========================= */
+
+function askAI(){
+
+const input=document
+.getElementById("userInput")
+.value
+.toLowerCase()
+.trim();
+
+const result=document.getElementById("aiResult");
+
+
+if(input===""){
+
+result.style.display="block";
+
+result.innerHTML=`
+<h3>🤖 AI Assistant</h3>
+<p>Please tell me your interests first.</p>
+`;
+
+return;
+
+}
+
+
+let suggestions=[];
+
+
+/* IT */
+
+if(
+input.includes("website") ||
+input.includes("web") ||
+input.includes("software") ||
+input.includes("computer") ||
+input.includes("coding")
+){
+
+suggestions.push("💻 Information Technology");
+}
+
+
+/* CSE */
+
+if(
+input.includes("programming") ||
+input.includes("app") ||
+input.includes("algorithm") ||
+input.includes("dsa") ||
+input.includes("developer")
+){
+
+suggestions.push("🖥️ Computer Science Engineering");
+}
+
+
+/* ECE */
+
+if(
+input.includes("electronics") ||
+input.includes("communication") ||
+input.includes("embedded") ||
+input.includes("iot") ||
+input.includes("circuit")
+){
+
+suggestions.push("📡 Electronics & Communication");
+}
+
+
+/* CYBER */
+
+if(
+input.includes("security") ||
+input.includes("hacking") ||
+input.includes("cyber") ||
+input.includes("network") ||
+input.includes("ethical hacker")
+){
+
+suggestions.push("🔐 Cyber Security");
+}
+
+
+/* ROBOTICS */
+
+if(
+input.includes("robot") ||
+input.includes("automation") ||
+input.includes("mechanical") ||
+input.includes("machine") ||
+input.includes("control")
+){
+
+suggestions.push("🤖 Robotics");
+}
+
+
+/* AI */
+
+if(
+input.includes("ai") ||
+input.includes("artificial intelligence") ||
+input.includes("machine learning") ||
+input.includes("data") ||
+input.includes("python") ||
+input.includes("analytics")
+){
+
+suggestions.push("🧠 AI & Data Science");
+}
+
+
+/* DEFAULT */
+
+if(suggestions.length===0){
+
+suggestions=[
+"💻 Information Technology",
+"🖥️ Computer Science Engineering",
+"🧠 AI & Data Science"
+];
+
+}
+
+
+/* REMOVE DUPLICATES */
+
+suggestions=[...new Set(suggestions)];
+
+
+result.style.display="block";
+
+result.innerHTML=`
+
+<h3>🤖 AI Career Suggestion</h3>
+
+<p>
+Based on the interests you entered, you can explore:
+</p>
+
+<br>
+
+${suggestions.map((item,index)=>`
+
+<p>
+<strong>${index+1}. ${item}</strong>
+</p>
+
+`).join("")}
+
+<br>
+
+<p>
+✨ Click one of the departments below to explore its complete career roadmap.
+</p>
+
+`;
+
+result.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+}
+
+</script>
+
+</body>
+</html>
